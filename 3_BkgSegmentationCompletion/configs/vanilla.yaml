@@ -1,0 +1,47 @@
+dataset_name : ms_coco
+exp_name : vanilla_0.1_0.6_aug30
+model : bsc
+
+start_from_checkpoint : False
+# checkpoint_path : /home/jinoh/data/HVITA_Pytorch/checkpoint/train_bsc_vanilla_test/epoch=00-valid_mIoU=0.000.ckpt
+save_base_dir : ../checkpoints
+wandb_log_path : ../
+coco_path : ../coco/
+modified_coco_path : ../modified_coco/
+
+val_check_interval : 1.0
+check_val_every_n_epoch : 1
+
+precision : 16
+strategy : ddp
+batch_size : 32
+num_workers : 4
+
+label_nc : 200
+
+crop_size : 256
+load_size : 286
+aspect_ratio : 1
+preprocess_mode : fixed
+no_flip : True
+
+optim_config : {
+                optimizer : adam,
+                lr_init : 1.0e-4,
+                weight_decay : 1.0e-4,
+                beta_1 : 0.9,
+                beta_2 : 0.999,
+            }
+
+tf_config : {
+              type : vanilla, # swin or vanilla
+              n_layers : 8,
+              dim : 64,
+              hidden_dim : 2048,
+              window_size : 8,
+              n_heads : 8,
+
+              inter_seg_size : 32,
+              initial_seg_size : 256,
+            }
+

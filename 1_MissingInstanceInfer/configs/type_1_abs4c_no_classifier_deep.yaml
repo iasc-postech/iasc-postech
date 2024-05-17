@@ -1,0 +1,72 @@
+dataset_name : ms_coco
+exp_name : type_1_abs4c_no_classifier_lr_1.0e-4_deep_scheduler_0.1_0.6_aug30
+model : mit
+
+start_from_checkpoint : False
+# checkpoint_path : ../checkpoints
+save_base_dir : ../checkpoints
+wandb_log_path : ../
+coco_path : ../coco/
+modified_coco_path : ../modified_coco/
+
+val_check_interval : 1.0
+check_val_every_n_epoch : 1
+
+precision : 32
+strategy : ddp
+batch_size : 128
+num_workers : 8
+
+label_nc : 210
+
+crop_size : 256
+load_size : 286
+aspect_ratio : 1
+preprocess_mode : fixed
+no_flip : True
+
+optim_config : {
+                optimizer : adam,
+                lr_init : 1.0e-4,
+                weight_decay : 1.0e-2,
+                beta_1 : 0.9,
+                beta_2 : 0.999,
+                scheduler : OneCycleLR,
+            }
+
+mit_config : {
+              smoothing : 0,
+              enc_layers : 12,
+              dim_feedforward : 2048,
+              hidden_dim : 256,
+              dropout : 0.1,
+              nhead : 8, # 4, 8, 16
+              tr_enc_activation : relu,
+              pre_norm : False,
+
+              obj_inf_model : type1, #type1, type2
+              obj_inf_no_pe : False,
+              obj_inf_pe_type : abs4c, # (cx,cy,w,h) with normalized - abs4c, (cx, cy) with normalized - abs2c, relative (cx-cx_mr, cy-cy_mr) with normalized - rel2c                 
+              no_classifier : True, # no classifier True indicate they use nn.embedding weight to calculate similarity of output tokens.
+              contain_is_thing : False
+            }
+
+
+# seg_aug_config : {
+#               tps_aug : 0,
+#               tps_points_per_dim : 3,
+#               tps_percent : 0.5,
+
+#               no_flip : True,
+
+#               affine_aug : [], ##['scaling', 'rotation', 'shearx' ,'sheary'], #
+#               affine_transforms : {"shearx": [-0.3, 0.3],
+#                                     "sheary": [-0.3, 0.3],
+#                                     "translationx": [-0.2, 0.2],
+#                                     "translationy": [-0.2, 0.2],
+#                                     "rotation": [-0.1, 0.1],
+#                                     "scaling" : [0.75, 1.0]
+#                                   },
+#             }
+
+

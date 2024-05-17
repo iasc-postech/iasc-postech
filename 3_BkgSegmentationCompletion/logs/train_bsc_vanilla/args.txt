@@ -1,0 +1,10 @@
+basedir = ./logs
+coco_path = ../coco
+config = ./configs/vanilla.yaml
+debug = False
+exp_name = train_bsc_vanilla
+i_print = 50
+modified_coco_path = ../modified_coco
+seed = 0
+test = False
+train = True

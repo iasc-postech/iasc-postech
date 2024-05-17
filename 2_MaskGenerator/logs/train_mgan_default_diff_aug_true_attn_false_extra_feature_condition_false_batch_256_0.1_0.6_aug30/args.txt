@@ -1,0 +1,10 @@
+basedir = ./logs
+coco_path = ../coco
+config = ./configs/default_no_attn_feature_condition_false.yaml
+debug = False
+exp_name = train_mgan_default_diff_aug_true_attn_false_extra_feature_condition_false_batch_256_0.1_0.6_aug30
+i_print = 50
+modified_coco_path = ../modified_coco_0.1_0.6/
+seed = 0
+test = False
+train = True

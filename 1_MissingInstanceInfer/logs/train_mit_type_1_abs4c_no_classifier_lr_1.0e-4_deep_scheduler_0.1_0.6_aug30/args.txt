@@ -1,0 +1,10 @@
+basedir = ./logs
+coco_path = ../coco
+config = configs/type_1_abs4c_no_classifier_deep.yaml
+debug = False
+exp_name = train_mit_type_1_abs4c_no_classifier_lr_1.0e-4_deep_scheduler_0.1_0.6_aug30
+i_print = 50
+modified_coco_path = ../modified_coco_0.1_0.6
+seed = 0
+test = False
+train = True

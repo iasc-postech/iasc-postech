@@ -1,0 +1,53 @@
+dataset_name : ms_coco
+exp_name : default_diff_aug_true_attn_false_extra_feature_condition_false_batch_256_0.1_0.6_aug30
+model : mgan
+
+start_from_checkpoint : False
+# checkpoint_path : ../checkpoints
+save_base_dir : ../checkpoints
+wandb_log_path : ../
+coco_path : ../coco/
+modified_coco_path : ../modified_coco/
+
+val_check_interval : 1.0
+check_val_every_n_epoch : 3
+category_id : [11,13,16 
+
+              ,16,17,18,19,20,21,22,24,25
+
+              ,44,46,47,51
+
+              ,53,55,56,58,59,60,61
+
+              ,70,72,73,74,85,86]
+
+precision : 32
+strategy : ddp
+batch_size : 256
+num_workers : 4
+label_nc : 91
+crop_size : 64
+load_size : 286
+aspect_ratio : 1
+preprocess_mode : fixed
+no_flip : True
+diffaug : True
+d_lr_init : 2.0e-4
+g_lr_init : 5.0e-5
+beta_1 : 0.0
+beta_2 : 0.999
+D_steps_per_G : 2
+
+mgan_config : {
+  extra_feature_condition : False,
+  apply_attn : False,
+  apply_g_sn : True,
+  apply_d_sn : True,
+  attn_g_loc : [3],
+  attn_d_loc : [1],
+  z_dim : 120,
+  g_shared_dim : 128,
+  g_conv_dim : 96,
+  d_conv_dim : 96
+  }
+

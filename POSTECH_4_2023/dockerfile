@@ -1,0 +1,21 @@
+# docker build -t ssl_inpainting/part4_postech:dummy .
+
+# docker run --gpus all --rm -d -it -p 10041:5000 --name part4_postech ssl_inpainting/part4_postech:dummy
+
+FROM alex4727/iasc:demo
+
+# Metadata indicating an image maintainer
+LABEL maintainer="Joonghyuk Shin <joonghyuk4727@gmail.com>"
+
+# Set non-interactive frontend (avoid apt-get prompts)
+ENV DEBIAN_FRONTEND=noninteractive
+
+ADD app /root/app
+
+WORKDIR /root/app
+
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+
+ENV SERVICE_PORT 5000
+
+EXPOSE ${SERVICE_PORT}

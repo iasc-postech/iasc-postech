@@ -1,0 +1,5 @@
+[default]
+entity = alex4727
+project = iasc
+base_url = https://api.wandb.ai
+
